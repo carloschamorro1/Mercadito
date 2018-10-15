@@ -37,9 +37,19 @@ public class Main {
         double dolares = 0;
         String nombre = "";
         String rtn = "";
+        int op = 0;
         Scanner sc = new Scanner(System.in);
-        menu(sc,opcion, producto,precio,precioAlcohol,productoAlcohol,subtotal,total,isv,isvAlcohol, impuesto,
-                impuestoAlcohol, subtotalAlcohol, totalAlcohol, seleccion,nombre,rtn,cantidad,dolares,cantidadAlcohol);
+        do {
+            menu(sc, opcion, producto, precio, precioAlcohol, productoAlcohol, subtotal, total, isv, isvAlcohol, impuesto,
+                    impuestoAlcohol, subtotalAlcohol, totalAlcohol, seleccion, nombre, rtn, cantidad, dolares, cantidadAlcohol);
+            do {
+                System.out.println("Desea realizar otra compra? Escriba 1 para si y 2 para no");
+                op = leerEnteroValidado(sc, "Ha ingresado un numero no valido");
+                if (op == 1)
+                    menu(sc, opcion, producto, precio, precioAlcohol, productoAlcohol, subtotal, total, isv, isvAlcohol, impuesto,
+                            impuestoAlcohol, subtotalAlcohol, totalAlcohol, seleccion, nombre, rtn, cantidad, dolares, cantidadAlcohol);
+            }while(op !=2);
+        }while(op !=2);
     }
     public static void menu(Scanner sc, int opcion, String[] producto, double[] precio, double[] precioAlcohol, String[] productoAlcohol, double subtotal, double total, double isv,
                             double isvAlcohol, double impuesto, double impuestoAlcohol, double subtotalAlcohol, double totalAlcohol, int seleccion, String nombre, String rtn,
@@ -112,7 +122,7 @@ public class Main {
                     + "\n 203.............. " + productoAlcohol[O_Coronita] + "\t \t \t \t \t L. " + precioAlcohol[O_Coronita]
                     + "\n 204.............. " + productoAlcohol[O_Corona] + "\t \t \t \t \t L. " + precioAlcohol[O_Corona]
                     + "\n 4................ Totalizar Bebidas Alcoholicas y regresar al menu principal " );
-            opcion = leerEnteroValidado(sc, "Ha ingresado un caracter o numero no valido");
+            opcion = leerEnteroValidado(sc,"Ha ingresado un caracter no valido o numero no valido");
             switch(opcion){
                 case 201:
                     subtotalAlcohol += salvavida(precioAlcohol);
